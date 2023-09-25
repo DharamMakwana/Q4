@@ -27,7 +27,7 @@
         <td><%= student.age %></td>
         <td><%= student.grade %></td>
         <td>
-          <a href="/students/update/<%= student._id %>">Update</a>
+          <a href="/views/updateStudent.ejs?id=<%= student._id %>">Update</a>
           <a href="/students/delete/<%= student._id %>">Delete</a>
         </td>
       </tr>

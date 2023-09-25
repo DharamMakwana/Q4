@@ -8,14 +8,14 @@ module.exports = {
     if (token) {
       jwt.verify(token, config.secret, (err, decoded) => {
         if (err) {
-          return res.redirect("/auth/login");
+          return res.redirect("/views/login");
         } else {
           req.user = decoded;
           next();
         }
       });
     } else {
-      return res.redirect("/auth/login");
+      return res.redirect("/views/login");
     }
   },
 };

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <h1>Update</h1>
+    <form
+      id="update-form"
+      action="/students/update/<%= data.id %>"
+      method="POST"
+    >
+      <input
+        value="<%= data.name %>"
+        type="text"
+        name="name"
+        placeholder="Name"
+        required
+      />
+      <input
+        value="<%= data.age %>"
+        type="number"
+        name="age"
+        placeholder="Age"
+        required
+      />
+      <input
+        value="<%= data.grade %>"
+        name="grade"
+        placeholder="Grade"
+        required
+      />
+      <button type="submit">Update Student</button>
+    </form>
+  </body>
+</html>
