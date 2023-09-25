@@ -34,7 +34,9 @@ app.use(
 app.set("view engine", "ejs");
 
 // Set the directory where your views are located (assuming they're in a folder named 'views')
-app.set("views", path.join(__dirname, "views"));
+// app.set("views", path.join(__dirname, "views"));
+
+app.use(express.static("views"));
 
 // Set up routes
 const studentRoutes = require("./routes/studentRoutes");
