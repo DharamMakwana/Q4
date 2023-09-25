@@ -21,6 +21,16 @@ module.exports = {
     }
   },
 
+  showUpdateForm: async (req, res) => {
+    try {
+      const student = await Student.findById(req.params.id);
+      res.render("updateStudent", { student });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server Error");
+    }
+  },
+
   updateStudent: async (req, res) => {
     try {
       const { id } = req.params;
