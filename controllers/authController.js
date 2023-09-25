@@ -13,9 +13,9 @@ module.exports = {
           expiresIn: "1h",
         });
         req.session.token = token;
-        res.redirect("/students");
+        res.redirect("/views/students");
       } else {
-        res.redirect("/auth/login");
+        res.redirect("/views/login");
       }
     } catch (error) {
       res.status(500).send(error.message);
@@ -25,9 +25,8 @@ module.exports = {
   register: async (req, res) => {
     try {
       const { username, password } = req.body;
-      const user = new User({ username, password });
-      await user.save();
-      res.redirect("/auth/login");
+      const user = await User.create({ username, password });
+      res.redirect("/views/login");
     } catch (error) {
       res.status(500).send(error.message);
     }
@@ -35,6 +34,6 @@ module.exports = {
 
   logout: (req, res) => {
     req.session.destroy();
-    res.redirect("/auth/login");
+    res.redirect("/views/login");
   },
 };
