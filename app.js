@@ -33,9 +33,7 @@ app.use(
 // Set the view engine to EJS
 app.set("view engine", "ejs");
 
-// Set the directory where your views are located (assuming they're in a folder named 'views')
-// app.set("views", path.join(__dirname, "views"));
-
+// Set the directory to serve your static files such as html/css/js/images/fonts
 app.use(express.static("views"));
 
 // Set up routes
