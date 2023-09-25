@@ -9,14 +9,6 @@ const path = require("path");
 
 const app = express();
 
-// Database connection
-// mongoose
-//   .connect(config.db, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => console.log("Database connected"));
-
 // Middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -38,10 +30,21 @@ const studentRoutes = require("./routes/studentRoutes");
 const authRoutes = require("./routes/authRoutes");
 const viewsRoutes = require("./routes/viewsRoutes");
 
-app.use("/", viewsRoutes);
-app.use("/students", middleware.checkAuth, studentRoutes);
+app.use("/views", viewsRoutes);
 app.use("/auth", authRoutes);
+app.use("/students", middleware.checkAuth, studentRoutes);
 
-app.listen(config.port, () => {
-  console.log(`Server is running on port ${config.port}`);
-});
+app.get("/", (_, res) => res.redirect("/views/login"));
+
+// Database connection
+mongoose
+  .connect(config.db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("DB Connected");
+    app.listen(config.port, () =>
+      console.log(`Server is on port ${config.port}`)
+    );
+  });

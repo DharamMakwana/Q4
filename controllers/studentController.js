@@ -15,7 +15,7 @@ module.exports = {
       const { name, age, grade } = req.body;
       const student = new Student({ name, age, grade });
       await student.save();
-      res.redirect("/students");
+      res.redirect("/views/students");
     } catch (error) {
       res.status(500).send(error.message);
     }
@@ -26,7 +26,7 @@ module.exports = {
       const { id } = req.params;
       const { name, age, grade } = req.body;
       await Student.findByIdAndUpdate(id, { name, age, grade });
-      res.redirect("/students");
+      res.redirect("/views/students");
     } catch (error) {
       res.status(500).send(error.message);
     }
@@ -36,7 +36,7 @@ module.exports = {
     try {
       const { id } = req.params;
       await Student.findByIdAndDelete(id);
-      res.redirect("/students");
+      res.redirect("/views/students");
     } catch (error) {
       res.status(500).send(error.message);
     }
